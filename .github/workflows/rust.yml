@@ -48,8 +48,10 @@ jobs:
       - uses: giraffate/clippy-action@v1.0.0
         name: Run Clippy with reviewdog
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          clippy_flags: -- --all-features -- -W clippy::pedantic -W clippy::nursery -W clippy::cargo
+            -A clippy::let_underscore_drop -A clippy::cast_possible_wrap -A clippy::cast_sign_loss
+            -A clippy::module_name_repetitions -A clippy::debug_assert_with_mut_call
   format:
     runs-on: ubuntu-latest
     env:
